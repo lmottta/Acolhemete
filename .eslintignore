@@ -1,0 +1,30 @@
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Dependencies
+node_modules/
+
+# Config files
+*.config.js
+*.config.mjs
+*.config.ts
+
+# Generated files
+*.d.ts
+
+# Logs
+*.log
+
+# Environment files
+.env*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
