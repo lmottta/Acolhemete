@@ -97,7 +97,7 @@ export function useAccessibility(): AccessibilityControls {
       );
       highContrastQuery.removeEventListener('change', handleHighContrastChange);
     };
-  }, []);
+  }, [applyPreferences]);
 
   // Apply preferences to the document
   const applyPreferences = useCallback((prefs: AccessibilityPreferences) => {
