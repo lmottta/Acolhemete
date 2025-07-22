@@ -29,76 +29,6 @@ export function useAccessibility(): AccessibilityControls {
   const [preferences, setPreferences] =
     useState<AccessibilityPreferences>(DEFAULT_PREFERENCES);
 
-  // Initialize preferences from localStorage and system preferences
-  useEffect(() => {
-    const initializePreferences = () => {
-      try {
-        // Load saved preferences
-        const saved = localStorage.getItem(STORAGE_KEY);
-        const savedPreferences = saved ? JSON.parse(saved) : {};
-
-        // Detect system preferences
-        const systemReducedMotion = window.matchMedia(
-          '(prefers-reduced-motion: reduce)'
-        ).matches;
-        const systemHighContrast = window.matchMedia(
-          '(prefers-contrast: high)'
-        ).matches;
-        const screenReader =
-          window.navigator.userAgent.includes('NVDA') ||
-          window.navigator.userAgent.includes('JAWS') ||
-          'speechSynthesis' in window;
-
-        const initialPreferences: AccessibilityPreferences = {
-          reducedMotion: savedPreferences.reducedMotion ?? systemReducedMotion,
-          highContrast: savedPreferences.highContrast ?? systemHighContrast,
-          fontSize: savedPreferences.fontSize ?? 'medium',
-          screenReader: screenReader,
-        };
-
-        setPreferences(initialPreferences);
-        applyPreferences(initialPreferences);
-      } catch (error) {
-        console.warn('Failed to initialize accessibility preferences:', error);
-      }
-    };
-
-    initializePreferences();
-
-    // Listen for system preference changes
-    const reducedMotionQuery = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    );
-    const highContrastQuery = window.matchMedia('(prefers-contrast: high)');
-
-    const handleReducedMotionChange = (e: MediaQueryListEvent) => {
-      setPreferences(prev => {
-        const updated = { ...prev, reducedMotion: e.matches };
-        applyPreferences(updated);
-        return updated;
-      });
-    };
-
-    const handleHighContrastChange = (e: MediaQueryListEvent) => {
-      setPreferences(prev => {
-        const updated = { ...prev, highContrast: e.matches };
-        applyPreferences(updated);
-        return updated;
-      });
-    };
-
-    reducedMotionQuery.addEventListener('change', handleReducedMotionChange);
-    highContrastQuery.addEventListener('change', handleHighContrastChange);
-
-    return () => {
-      reducedMotionQuery.removeEventListener(
-        'change',
-        handleReducedMotionChange
-      );
-      highContrastQuery.removeEventListener('change', handleHighContrastChange);
-    };
-  }, [applyPreferences]);
-
   // Apply preferences to the document
   const applyPreferences = useCallback((prefs: AccessibilityPreferences) => {
     const root = document.documentElement;
@@ -196,6 +126,76 @@ export function useAccessibility(): AccessibilityControls {
     } catch (error) {
       console.warn('Failed to reset accessibility preferences:', error);
     }
+  }, [applyPreferences]);
+
+  // Initialize preferences from localStorage and system preferences
+  useEffect(() => {
+    const initializePreferences = () => {
+      try {
+        // Load saved preferences
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const savedPreferences = saved ? JSON.parse(saved) : {};
+
+        // Detect system preferences
+        const systemReducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+        const systemHighContrast = window.matchMedia(
+          '(prefers-contrast: high)'
+        ).matches;
+        const screenReader =
+          window.navigator.userAgent.includes('NVDA') ||
+          window.navigator.userAgent.includes('JAWS') ||
+          'speechSynthesis' in window;
+
+        const initialPreferences: AccessibilityPreferences = {
+          reducedMotion: savedPreferences.reducedMotion ?? systemReducedMotion,
+          highContrast: savedPreferences.highContrast ?? systemHighContrast,
+          fontSize: savedPreferences.fontSize ?? 'medium',
+          screenReader: screenReader,
+        };
+
+        setPreferences(initialPreferences);
+        applyPreferences(initialPreferences);
+      } catch (error) {
+        console.warn('Failed to initialize accessibility preferences:', error);
+      }
+    };
+
+    initializePreferences();
+
+    // Listen for system preference changes
+    const reducedMotionQuery = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+    const highContrastQuery = window.matchMedia('(prefers-contrast: high)');
+
+    const handleReducedMotionChange = (e: MediaQueryListEvent) => {
+      setPreferences(prev => {
+        const updated = { ...prev, reducedMotion: e.matches };
+        applyPreferences(updated);
+        return updated;
+      });
+    };
+
+    const handleHighContrastChange = (e: MediaQueryListEvent) => {
+      setPreferences(prev => {
+        const updated = { ...prev, highContrast: e.matches };
+        applyPreferences(updated);
+        return updated;
+      });
+    };
+
+    reducedMotionQuery.addEventListener('change', handleReducedMotionChange);
+    highContrastQuery.addEventListener('change', handleHighContrastChange);
+
+    return () => {
+      reducedMotionQuery.removeEventListener(
+        'change',
+        handleReducedMotionChange
+      );
+      highContrastQuery.removeEventListener('change', handleHighContrastChange);
+    };
   }, [applyPreferences]);
 
   return {

@@ -1,103 +1,226 @@
-import Image from 'next/image';
+import { Container, Section } from '../components/ui';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from '../components/ui';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{' '}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      {/* Hero Section */}
+      <Section
+        spacing="xl"
+        background="transparent"
+        className="relative overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 opacity-60" />
+        <Container size="lg" className="relative">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-hero font-bold text-neutral-900 mb-6">
+              Bem-vindos ao{' '}
+              <span className="text-primary-600">AcolheMente</span>
+            </h1>
+            <p className="text-xl text-neutral-600 mb-8 leading-relaxed">
+              Plataforma digital para a comunidade autista e neurodivergente na
+              América Latina. Conectando famílias, profissionais e clínicas com
+              segurança e acolhimento.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="primary" size="lg">
+                Começar Agora
+              </Button>
+              <Button variant="outline" size="lg">
+                Saiba Mais
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      {/* Features Preview */}
+      <Section spacing="lg" background="neutral">
+        <Container size="lg">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+              Design System e Acessibilidade
+            </h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Desenvolvido com princípios de neurodesign e acessibilidade para
+              proporcionar uma experiência inclusiva e acolhedora.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card variant="interactive">
+              <CardHeader>
+                <CardTitle>🎨 Neurodesign</CardTitle>
+                <CardDescription>
+                  Cores calmas e contrastes adequados para reduzir sobrecarga
+                  sensorial
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex space-x-2 mb-4">
+                  <div
+                    className="w-8 h-8 bg-primary-500 rounded-full"
+                    title="Azul primário"
+                  />
+                  <div
+                    className="w-8 h-8 bg-secondary-500 rounded-full"
+                    title="Verde secundário"
+                  />
+                  <div
+                    className="w-8 h-8 bg-accent-500 rounded-full"
+                    title="Roxo accent"
+                  />
+                </div>
+                <p className="text-sm text-neutral-600">
+                  Paleta de cores desenvolvida especificamente para usuários
+                  neurodivergentes
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card variant="interactive">
+              <CardHeader>
+                <CardTitle>♿ Acessibilidade</CardTitle>
+                <CardDescription>
+                  Navegação por teclado, leitores de tela e controles
+                  personalizáveis
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-sm">
+                    <span className="w-2 h-2 bg-success-500 rounded-full mr-2" />
+                    Navegação por teclado
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <span className="w-2 h-2 bg-success-500 rounded-full mr-2" />
+                    Compatível com leitores de tela
+                  </div>
+                  <div className="flex items-center text-sm">
+                    <span className="w-2 h-2 bg-success-500 rounded-full mr-2" />
+                    Controles de movimento e contraste
+                  </div>
+                </div>
+                <p className="text-sm text-neutral-600">
+                  Seguindo diretrizes WCAG 2.1 AA
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card variant="interactive">
+              <CardHeader>
+                <CardTitle>🧪 Testado</CardTitle>
+                <CardDescription>
+                  Componentes testados com cobertura completa e qualidade
+                  garantida
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-neutral-100 rounded-lg p-3 mb-4">
+                  <div className="text-2xl font-bold text-success-600">68</div>
+                  <div className="text-sm text-neutral-600">
+                    Testes passando
+                  </div>
+                </div>
+                <p className="text-sm text-neutral-600">
+                  Testes unitários, de integração e acessibilidade
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Component Showcase */}
+      <Section spacing="lg" background="transparent">
+        <Container size="lg">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+              Componentes do Sistema
+            </h2>
+            <p className="text-lg text-neutral-600">
+              Explore os componentes que compõem nossa base de design acessível
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {/* Buttons */}
+            <div>
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">
+                Botões
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                <Button variant="primary">Primário</Button>
+                <Button variant="secondary">Secundário</Button>
+                <Button variant="accent">Accent</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="ghost">Ghost</Button>
+                <Button variant="primary" loading>
+                  Carregando
+                </Button>
+                <Button variant="primary" disabled>
+                  Desabilitado
+                </Button>
+              </div>
+            </div>
+
+            {/* Navigation Demo */}
+            <div>
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">
+                Navegação
+              </h3>
+              <Card>
+                <CardContent className="p-6">
+                  <p className="text-neutral-600 mb-4">
+                    ✨ <strong>Navegação responsiva</strong> com menu mobile,
+                    navegação por teclado e indicador de progresso
+                  </p>
+                  <p className="text-neutral-600 mb-4">
+                    🎛️ <strong>Controles de acessibilidade</strong> disponíveis
+                    no canto superior direito
+                  </p>
+                  <p className="text-neutral-600">
+                    📊 <strong>Barra de progresso</strong> no topo da página
+                    mostra o progresso de leitura
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* Call to Action */}
+      <Section spacing="lg" background="primary" className="text-white">
+        <Container size="md" centerContent>
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4">Pronto para começar?</h2>
+            <p className="text-xl text-primary-100 mb-8">
+              Junte-se à nossa comunidade e faça parte de uma plataforma
+              verdadeiramente inclusiva
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="secondary" size="lg">
+                Cadastre-se Gratuitamente
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-primary-600"
+              >
+                Fale Conosco
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    </>
   );
 }
